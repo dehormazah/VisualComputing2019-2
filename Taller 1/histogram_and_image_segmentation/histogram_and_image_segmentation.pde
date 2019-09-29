@@ -113,7 +113,12 @@ if(keyNum<=9 && keyNum>0){
       break;
     }
   }
+  hist = new int[256];;
   image1.resize(800,410);
+  for (int i = 0; i < image1.pixels.length; i++) {  
+      int bright = int(brightness(image1.pixels[i]));
+      hist[bright]++;  
+  }
 }
 /*pg2.clear();
   if(key=='+'){
