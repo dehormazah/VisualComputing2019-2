@@ -32,11 +32,11 @@ void setup(){
   pg2 = createGraphics(730,500);
   image1 = loadImage("melancholia.jpg");
   image1.resize(730,500);  
+  fill(0);
+  text(masks, 400, 25);  
 }
 
-void draw(){
-  fill(0);
-  text(masks, 400, 25);    
+void draw(){ 
   pg.beginDraw();
   pg.image(image1,0,0);
   pg.endDraw();
