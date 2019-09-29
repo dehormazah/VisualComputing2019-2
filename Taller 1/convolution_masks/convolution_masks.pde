@@ -1,6 +1,8 @@
 import java.util.*;
+
 PGraphics pg, pg2;
 PImage image1, image2;
+
 float[][] edge1 =   {  {1, 0,-1},
                      {0, 0, 0,},
                      {-1,0, 1}};
@@ -22,14 +24,17 @@ float[][] blur =   {  {0.11, 0.11,0.11},
 float[][] matrix = blur;
 
 void setup(){
-  size(1520,540);
+  size(1520,560);
+  textSize(20);
   pg = createGraphics(730,500);
   pg2 = createGraphics(730,500);
   image1 = loadImage("melancholia.jpg");
-  image1.resize(730,500);
+  image1.resize(730,500);  
 }
 
 void draw(){
+  fill(255,0,0);
+  text("blur - 1", 20, 30);  
   
   pg.beginDraw();
   pg.image(image1,0,0);
@@ -67,6 +72,13 @@ void draw(){
   pg2.updatePixels();
   pg2.endDraw();
   
-  image(pg,20,20);
-  image(pg2,770,20);
+  image(pg,20,40);
+  image(pg2,770,40);
 }
+
+void keyPressed(){
+int keyNum = Character.getNumericValue(key);
+if(keyNum<=9 && keyNum>0){
+  num = keyNum;
+}
+} 
