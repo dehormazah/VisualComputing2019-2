@@ -3,6 +3,8 @@ import java.util.*;
 PGraphics pg, pg2;
 PImage image1, image2;
 
+String masks ="normal-1      blur-2      sharpen-3      edge1-4      edge2-5      edge3-6";
+
 float[][] edge1 =   {  {1, 0,-1},
                      {0, 0, 0,},
                      {-1,0, 1}};
@@ -21,7 +23,7 @@ float[][] sharpen =   {  {0, -1,0},
 float[][] blur =   {  {0.11, 0.11,0.11},
                      {0.11,0.11, 0.11,},
                      {0.11,0.11, 0.11}};                        
-float[][] matrix = blur;
+float[][] matrix = identity;
 
 void setup(){
   size(1520,560);
@@ -33,9 +35,8 @@ void setup(){
 }
 
 void draw(){
-  fill(255,0,0);
-  text("blur - 1", 20, 30);  
-  
+  fill(0);
+  text(masks, 400, 25);    
   pg.beginDraw();
   pg.image(image1,0,0);
   pg.endDraw();
@@ -78,7 +79,27 @@ void draw(){
 
 void keyPressed(){
 int keyNum = Character.getNumericValue(key);
+pg2.clear();
 if(keyNum<=9 && keyNum>0){
-  num = keyNum;
+  switch(keyNum){
+    case 1:
+      matrix =  identity;
+      break;
+    case 2: 
+      matrix = blur;
+      break;
+    case 3:
+      matrix = sharpen;
+      break;
+    case 4: 
+      matrix = edge1;
+      break;
+    case 5:
+      matrix = edge2;
+      break;
+    case 6:
+      matrix = edge3;
+      break;
+  }
 }
 } 
