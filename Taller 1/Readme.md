@@ -14,8 +14,6 @@ Introducir el análisis de imágenes/video en el lenguaje de [Processing](https:
 
 ## Integrantes
 
-Completar la tabla:
-
 | Integrante                      | github nick |
 |---------------------------------|-------------|
 | David Eduardo Hormaza           |dehormazah   |
