@@ -5,6 +5,7 @@ PImage image1, image2;
 
 String masks ="normal-1      blur-2      sharpen-3      edge1-4      edge2-5      edge3-6";
 
+//kernels para aplicar las máscaras de convolución
 float[][] edge1 =   {  {1, 0,-1},
                      {0, 0, 0,},
                      {-1,0, 1}};
@@ -44,6 +45,7 @@ void draw(){
   pg2.beginDraw();
   pg2.image(image1,0,0);
   pg2.loadPixels();
+  // Código para aplicar las máscaras de convolución, adaptado de: https://processing.org/examples/blur.html
   for (int y = 1; y < pg2.height-1; y++) {   // Skip top and bottom edges
     for (int x = 1; x < pg2.width-1; x++) {  // Skip left and right edges
       float sum = 0;
@@ -54,19 +56,17 @@ void draw(){
       for (int ky = -1; ky <= 1; ky++) {
         for (int kx = -1; kx <= 1; kx++) {
           // Calculate the adjacent pixel for this kernel point
-          int pos = (y + ky)*pg2.width + (x + kx);
-          // Image is grayscale, red/green/blue are identical
+          int pos = (y + ky)*pg2.width + (x + kx);          
           float val_red = red(pg2.pixels[pos]);
           float val_green = green(pg2.pixels[pos]);
           float val_blue = blue(pg2.pixels[pos]);
           // Multiply adjacent pixels based on the kernel values
-          sum_red += matrix[ky+1][kx+1] * val_red/1 ;  
-          sum_green += matrix[ky+1][kx+1] * val_green/1 ;  
-          sum_blue += matrix[ky+1][kx+1] * val_blue/1 ;  
+          sum_red += matrix[ky+1][kx+1] * val_red;  
+          sum_green += matrix[ky+1][kx+1] * val_green;  
+          sum_blue += matrix[ky+1][kx+1] * val_blue;  
         }
       }
-      // For this pixel in the new image, set the gray value
-      // based on the sum from the kernel
+      //Asignar nuevo valor al pixel a partir de la convolución
       pg2.pixels[y*pg2.width + x] = color(sum_red,sum_green,sum_blue);
     }
   }

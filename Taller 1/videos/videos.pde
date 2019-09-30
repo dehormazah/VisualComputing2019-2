@@ -80,7 +80,9 @@ void draw() {
   pg2.image(myMovie2,0,0);
   pg2.loadPixels();
   
+  //Aplicar alguna máscara de convolución
   if(matrix!=identity){  
+    // Código para aplicar las máscaras de convolución, adaptado de: https://processing.org/examples/blur.html
     for (int y = 1; y < pg2.height-1; y++) {   // Skip top and bottom edges
       for (int x = 1; x < pg2.width-1; x++) {  // Skip left and right edges
         float sum = 0;
@@ -92,18 +94,16 @@ void draw() {
           for (int kx = -1; kx <= 1; kx++) {
             // Calculate the adjacent pixel for this kernel point
             int pos = (y + ky)*pg2.width + (x + kx);
-            // Image is grayscale, red/green/blue are identical
             float val_red = red(pg2.pixels[pos]);
             float val_green = green(pg2.pixels[pos]);
             float val_blue = blue(pg2.pixels[pos]);
             // Multiply adjacent pixels based on the kernel values
-            sum_red += matrix[ky+1][kx+1] * val_red/1 ;  
-            sum_green += matrix[ky+1][kx+1] * val_green/1 ;  
-            sum_blue += matrix[ky+1][kx+1] * val_blue/1 ;  
+            sum_red += matrix[ky+1][kx+1] * val_red;  
+            sum_green += matrix[ky+1][kx+1] * val_green;  
+            sum_blue += matrix[ky+1][kx+1] * val_blue;  
           }
         }
-        // For this pixel in the new image, set the gray value
-        // based on the sum from the kernel
+        // Asignar el valor nuevo del pixel según la máscara y el efecto que se quiere aplicar
         if(mask=="normal"){
           pg2.pixels[y*pg2.width + x] = color(sum_red,sum_green,sum_blue);
         }else if(mask=="grayScale"){

@@ -14,7 +14,7 @@ color[] colors  = {
   c1, c2, c3, c4
 };
 
-String images ="Star Wars-1      The House That Jack Built-2      Fluorescence-3      Joker-4      Tree of Life-5      Antichrist-6";
+String images ="Image1-1      Image2-2      Image3-3      Image4-4      Image5-5      Image6-6";
 
 // Find the largest value in the histogram
 int histMax=0, mapMeanHist=0;
@@ -26,19 +26,14 @@ void setup(){
   pg1 = createGraphics(800,410);
   pg2 = createGraphics(800,410);
   
+  //Código extraído de https://processing.org/examples/histogram.html
   for (int i = 0; i < image1.pixels.length; i++) {  
       int bright = int(brightness(image1.pixels[i]));
       hist[bright]++;  
   }
-  int histValues =0;
-  for (int i = 0; i < hist.length; i++) {  
-      histValues+=hist[i];
-  }
   histMax = max(hist);
-  int meanHist = histValues/256;
-  mapMeanHist = int(map(meanHist, 0 , histMax , 0,image1.height));
   fill(0);
-  text(images, 340, 40);   
+  text(images, 440, 40);   
 }
 
 void draw(){
@@ -51,8 +46,10 @@ void draw(){
   pg2.loadPixels();
   pg2.image(image1,0,0);
   stroke(255);
-// Draw half of the histogram (skip every second value)
-for (int i = 0; i < pg2.width; i += 2) {
+  
+  //Código extraído de https://processing.org/examples/histogram.html
+  // Draw half of the histogram (skip every second value)
+  for (int i = 0; i < pg2.width; i += 2) {
   // Map i (from 0..img.width) to a location in the histogram (0..255)
   int which = int(map(i, 0, pg2.width, 0, 255));
   // Convert the histogram value to a location between 
@@ -71,15 +68,6 @@ for (int i = 0; i < image1.pixels.length; i++) {
      }else if(position >=192 && position <256){
        pg2.pixels[i] = colors[3];
      }
-  
-    /*if(hist[int(brightness(image1.pixels[i]))]< mapMeanHist){
-      image2.pixels[i]=color(0);
-    }else{
-      image2.pixels[i]=image1.pixels[i];
-    }*/
-    /*if(int(brightness(image1.pixels[i]))<20){
-      image2.pixels[i]=color(255);
-    }*/
 }
   pg2.updatePixels();
   pg2.endDraw();
@@ -115,16 +103,12 @@ if(keyNum<=9 && keyNum>0){
   }
   hist = new int[256];;
   image1.resize(800,410);
+  //Código extraído de https://processing.org/examples/histogram.html
   for (int i = 0; i < image1.pixels.length; i++) {  
       int bright = int(brightness(image1.pixels[i]));
       hist[bright]++;  
   }
+  histMax = max(hist);
 }
-/*pg2.clear();
-  if(key=='+'){
-    mapMeanHist+=100; 
-  }else if(key=='-'){
-    mapMeanHist-=100;
-  }*/
 
   
