@@ -53,6 +53,6 @@ a partir de la información encontrada [aquí](https://en.wikipedia.org/wiki/Lum
 #### Medición de la eficiencia computacional:
 - Se hizo conversión a escala de grises (mediante promedio rgb y luma) de cada uno de los frames de un video y también se aplicaron máscaras de convolución (las mismas aplicadas a las imágenes) para medir la cantidad de fps (frames por segundo) que podía ser procesada en un instante dado.
 
-- Partiendo de un valor inicial de ```frameRate = 100``` (es decir, 100 frames por segundo), al hacer conversión a escala de grises dicho valor se mantiene entre los 80 y 90 fps, mientras que al aplicar alguna de las máscaras de convolución baja y se mantiene en el orden de los 40 fps.
+- Partiendo de un valor inicial de ```frameRate = 100``` (es decir, 100 frames por segundo), al hacer conversión a escala de grises dicho valor se mantiene entre los 80 y 90 fps, mientras que al aplicar alguna de las máscaras de convolución baja y se mantiene en el orden de los 20 fps.
 
 - Lo anterior permite concluir que al hacer operaciones mucho más complejas para aplicar las máscaras de convolución la cantidad de fps que pueden ser procesados disminuye considerablemente, mientras que al realizar operaciones sencillas como las necesarias para la conversión a escala de grises la cantidad de fps es muy cercana a la obtenida con una reproducción corriente del video (sin aplicar operación alguna).
