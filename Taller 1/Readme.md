@@ -23,10 +23,10 @@ Introducir el análisis de imágenes/video en el lenguaje de [Processing](https:
 ## Discusión
 
 * Se implementaron cada una de las tareas propuestas para este taller. 
-* La conversión a escala de grises (tanto mediante promedio rgb como por el cálculo de la luminosidad de los pixeles "luma") se implementó en el archivo [gray_scale.pde](https://github.com/dehormazah/VisualComputing2019-2/blob/master/Taller%201/gray_scale/gray_scale.pde)
-* La aplicación de máscaras de convolución a imágenes se implementó en el archivo [convolution_masks.pde](https://github.com/dehormazah/VisualComputing2019-2/blob/master/Taller%201/convolution_masks/convolution_masks.pde)
-* El despliegue del histograma y la segmentación de imágenes a partir del mismo se implementó en el archivo [histogram_and_image_segmentation.pde](https://github.com/dehormazah/VisualComputing2019-2/blob/master/Taller%201/histogram_and_image_segmentation/histogram_and_image_segmentation.pde)
-* La medición de la eficiencia computacional al hacer operaciones (conversión a escala de grises y aplicación de máscaras de convolución) sobre videos se implementó en el archivo [videos.pde](https://github.com/dehormazah/VisualComputing2019-2/blob/master/Taller%201/videos/videos.pde)
+* La conversión a escala de grises (tanto mediante promedio rgb como por el cálculo de la luminosidad de los pixeles "luma") se implementó en el archivo [gray_scale.pde](https://github.com/dehormazah/VisualComputing2019-2/blob/master/Taller%201/gray_scale/gray_scale.pde).
+* La aplicación de máscaras de convolución a imágenes se implementó en el archivo [convolution_masks.pde](https://github.com/dehormazah/VisualComputing2019-2/blob/master/Taller%201/convolution_masks/convolution_masks.pde).
+* El despliegue del histograma y la segmentación de imágenes a partir del mismo se implementó en el archivo [histogram_and_image_segmentation.pde](https://github.com/dehormazah/VisualComputing2019-2/blob/master/Taller%201/histogram_and_image_segmentation/histogram_and_image_segmentation.pde).
+* La medición de la eficiencia computacional al hacer operaciones (conversión a escala de grises y aplicación de máscaras de convolución) sobre videos se implementó en el archivo [videos.pde](https://github.com/dehormazah/VisualComputing2019-2/blob/master/Taller%201/videos/videos.pde).
 
 ###Observaciones sobre el código**
 
