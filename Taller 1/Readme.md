@@ -30,13 +30,13 @@ Introducir el análisis de imágenes/video en el lenguaje de [Processing](https:
 
 ### Observaciones sobre el código
 
-* **Conversión a escala de grises**:
+#### Conversión a escala de grises:
 - Por promedio RGB: En este caso se empleó la fórmula: 
 
 ```
 color(int((red+green+blue)/3)
 ```
-donde red, green y blue son las variables donde se almacenan los valores de rojo, verde y azul de cada uno de los pixeles de la imagen analizada, a las cuales se les calcula su promedio y se extrae el color (en escala de grises, esto es un valor entre 0 y 255 donde 0 es el negro "absoluto" y 255 el blanco "absoluto"). 
+donde red, green y blue son las variables donde se almacenan los valores de rojo, verde y azul de cada uno de los pixeles de la imagen analizada, a las cuales se les calcula su promedio y se extrae el color en escala de grises (esto es un valor entre 0 y 255 donde 0 es el negro "absoluto" y 255 el blanco "absoluto"). 
 
 - Por cálculo de la luminosidad (luma): En este caso se empleó la fórmula: 
 
