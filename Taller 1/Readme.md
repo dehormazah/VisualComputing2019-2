@@ -38,9 +38,21 @@ color(int((red+green+blue)/3)
 ```
 donde red, green y blue son las variables donde se almacenan los valores de rojo, verde y azul de cada uno de los pixeles de la imagen analizada, a las cuales se les calcula su promedio y se extrae el color en escala de grises (esto es un valor entre 0 y 255 donde 0 es el negro "absoluto" y 255 el blanco "absoluto"). 
 
-- Por cálculo de la luminosidad (luma): En este caso se empleó la fórmula: 
-
-```
+- Por cálculo de la luminosidad (luma): En este caso se empleó la fórmula:
+``` 
 color((0.8126 * red) + (0.9952 *green) + (0.9992 * blue))
 ```
 a partir de la información encontrada [aquí](https://en.wikipedia.org/wiki/Luma_(video)).
+
+#### Aplicación de máscaras de convolución sobre imágenes:
+- Se aplicaron máscaras de convolución para obtener efectos de enfoque (sharpen), desenfoque (blur) y detección de bordes (edges) a partir del uso de kernels (matrices) que al ser operadas con los pixeles de las imágenes producen los efectos nombrados anteriormente. Se usó como soporte la información encontrada [aquí](https://en.wikipedia.org/wiki/Kernel_(image_processing)).
+
+#### Despliegue de histograma y segmentación de imágenes:
+- Se construyó el histograma de escala de grises (valores entre 0 y 255) para un conjunto de imágenes, se dividió en 4 grupos (cada uno de 64 valores posibles) y a cada grupo se le asignó un color distinto para la segmentación de la imagen en regiones de acuerdo al valor nuevo que adquiere cada pixel en la imagen resultante según la distribución del valor original en el histograma realizado.
+
+#### Medición de la eficiencia computacional:
+- Se hizo conversión a escala de grises (mediante promedio rgb y luma) de cada uno de los frames de un video y también se aplicaron máscaras de convolución (las mismas aplicadas a las imágenes) para medir la cantidad de fps (frames por segundo) que podía ser procesada en un instante dado.
+
+- Partiendo de un valor inicial de ```frameRate = 100``` (es decir, 100 frames por segundo), al hacer conversión a escala de grises dicho valor se mantiene entre los 80 y 90 fps, mientras que al aplicar alguna de las máscaras de convolución baja y se mantiene en el orden de los 40 fps.
+
+- Lo anterior permite concluir que al hacer operaciones mucho más complejas para aplicar las máscaras de convolución la cantidad de fps que pueden ser procesados disminuye considerablemente, mientras que al realizar operaciones sencillas como las necesarias para la conversión a escala de grises la cantidad de fps es muy cercana a la obtenida con una reproducción corriente del video (sin aplicar operación alguna).
