@@ -22,7 +22,8 @@ Comprender algunos aspectos fundamentales de la inferencia inconsciente de la pe
 1. Complete la tabla
 
 | Ilusión | Categoria | Referencia | Tipo de interactividad (si aplica) | URL código base (si aplica) |
-|Mach's band|Psicológica| Presentación https://github.com/VisualComputing/Cognitive |Mover el mouse|-----------------------------|
+|---------|-----------|------------|------------------------------------|-----------------------------|
+|Mach's band|Psicológica| Presentación https://github.com/VisualComputing/Cognitive |Mover el mouse| |
 |Stuart Antsis Illusion         |Movimiento|Presentación  https://github.com/VisualComputing/Cognitive            |                                    |Hacer click                             |
 |         |           |            |                                    |                             |
 |         |           |            |                                    |                             |
