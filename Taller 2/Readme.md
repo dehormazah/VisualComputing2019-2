@@ -24,8 +24,8 @@ Comprender algunos aspectos fundamentales de la inferencia inconsciente de la pe
 | Ilusión | Categoria | Referencia | Tipo de interactividad (si aplica) | URL código base (si aplica) |
 |---------|-----------|------------|------------------------------------|-----------------------------|
 |Mach's band|Psicológica| Presentación https://github.com/VisualComputing/Cognitive |Mover el mouse| |
-|Stuart Antsis Illusion         |Movimiento|Presentación  https://github.com/VisualComputing/Cognitive            |                                    |Hacer click                             |
-|Motion Binding (Modified)|Presentación https://github.com/VisualComputing/Cognitive            |Movimiento            |                                    |Hacer click                             |
+|Stuart Antsis Illusion         |Movimiento|Presentación  https://github.com/VisualComputing/Cognitive            |Hacer click                                    |                             |
+|Motion Binding (Modified)|Presentación https://github.com/VisualComputing/Cognitive            |Movimiento            |Hacer click                                      |                           |
 |         |           |            |                                    |                             |
 |         |           |            |                                    |                             |
 |         |           |            |                                    |                             |
