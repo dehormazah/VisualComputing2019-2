@@ -21,7 +21,6 @@ void penrose_triangle() {
 
 void setup(){
   size(520,520);
-  frameRate(60);
 }
 
 void draw(){

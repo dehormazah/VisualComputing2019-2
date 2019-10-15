@@ -1,4 +1,4 @@
-//Scintillating Grid illusion//
+//Scintillating Grid illusion
 
 void ScintillatingGrid(){
   background(0);
