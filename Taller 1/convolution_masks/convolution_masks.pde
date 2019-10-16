@@ -1,5 +1,3 @@
-import java.util.*;
-
 PGraphics pg, pg2;
 PImage image1, image2;
 
@@ -48,7 +46,6 @@ void draw(){
   // Código para aplicar las máscaras de convolución, adaptado de: https://processing.org/examples/blur.html
   for (int y = 1; y < pg2.height-1; y++) {   // Skip top and bottom edges
     for (int x = 1; x < pg2.width-1; x++) {  // Skip left and right edges
-      float sum = 0;
       float sum_red=0 ;
       float sum_green=0; 
       float sum_blue=0;
@@ -56,10 +53,10 @@ void draw(){
       for (int ky = -1; ky <= 1; ky++) {
         for (int kx = -1; kx <= 1; kx++) {
           // Calculate the adjacent pixel for this kernel point
-          int pos = (y + ky)*pg2.width + (x + kx);          
-          float val_red = red(pg2.pixels[pos]);
-          float val_green = green(pg2.pixels[pos]);
-          float val_blue = blue(pg2.pixels[pos]);
+          int pos = (y + ky)*image1.width + (x + kx);          
+          float val_red = red(image1.pixels[pos]);
+          float val_green = green(image1.pixels[pos]);
+          float val_blue = blue(image1.pixels[pos]);
           // Multiply adjacent pixels based on the kernel values
           sum_red += matrix[ky+1][kx+1] * val_red;  
           sum_green += matrix[ky+1][kx+1] * val_green;  

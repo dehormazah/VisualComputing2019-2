@@ -23,9 +23,9 @@ float[][] edge3 =   {  {-1, -1,-1},
 float[][] identity =   {  {0, 0,0},
                      {0, 1, 0,},
                      {0,0, 0}};       
-float[][] sharpen =   {  {0, -1,0},
+float[][] sharpen =  {  {0, -1,0},
                      {-1,5, -1,},
-                     {0,-1, 0}};       
+                     {0,-1, 0}};        
 float[][] blur =   {{0.11, 0.11,0.11},
                      {0.11,0.11, 0.11,},
                      {0.11,0.11, 0.11}};
@@ -93,10 +93,10 @@ void draw() {
         for (int ky = -1; ky <= 1; ky++) {
           for (int kx = -1; kx <= 1; kx++) {
             // Calculate the adjacent pixel for this kernel point
-            int pos = (y + ky)*pg2.width + (x + kx);
-            float val_red = red(pg2.pixels[pos]);
-            float val_green = green(pg2.pixels[pos]);
-            float val_blue = blue(pg2.pixels[pos]);
+            int pos = (y + ky)*myMovie.width + (x + kx);
+            float val_red = red(myMovie.pixels[pos]);
+            float val_green = green(myMovie.pixels[pos]);
+            float val_blue = blue(myMovie.pixels[pos]);
             // Multiply adjacent pixels based on the kernel values
             sum_red += matrix[ky+1][kx+1] * val_red;  
             sum_green += matrix[ky+1][kx+1] * val_green;  
@@ -123,7 +123,7 @@ void draw() {
     if(mask=="grayScale"){
       pg2.pixels[i] = color(int((red+green+blue)/3));
     }else if(mask=="luma"){
-    pg2.pixels[i] = color((0.8126 * red) + (0.9952 *green) + (0.9992 * blue));
+    pg2.pixels[i] = color((0.6126 * red) + (0.7952 *green) + (0.6992 * blue));
     }
    }
   }  

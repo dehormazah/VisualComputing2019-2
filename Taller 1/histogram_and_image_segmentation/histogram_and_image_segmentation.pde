@@ -17,12 +17,13 @@ color[] colors  = {
 String images ="Image1-1      Image2-2      Image3-3      Image4-4      Image5-5      Image6-6";
 
 // Find the largest value in the histogram
-int histMax=0, mapMeanHist=0;
+int histMax=0;
 
 void setup(){
   size(1660, 480);
   textSize(20);
-  image1 =  loadImage("star-wars.jpg");  image1.resize(800,410);
+  image1 =  loadImage("star-wars.jpg"); 
+  image1.resize(800,410);
   pg1 = createGraphics(800,410);
   pg2 = createGraphics(800,410);
   
@@ -101,7 +102,7 @@ if(keyNum<=9 && keyNum>0){
       break;
     }
   }
-  hist = new int[256];;
+  hist = new int[256];
   image1.resize(800,410);
   //Código extraído de https://processing.org/examples/histogram.html
   for (int i = 0; i < image1.pixels.length; i++) {  
