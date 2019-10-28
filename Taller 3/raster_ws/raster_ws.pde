@@ -12,6 +12,7 @@ TimingTask spinningTask;
 boolean yDirection;
 // scaling is a power of 2
 int n = 4;
+int DIVISIONS = 5;
 
 int[]red = {255,0,0};
 int[]green = {0,255,0};
@@ -85,33 +86,96 @@ void triangleRaster() {
   // here we convert v1 to illustrate the idea
   push();
   float area = edgeFunction(v1, v2, v3); 
-  for (int i = -60; i < 60; i++) { 
-        for (int  j = -60; j < 60; j++) { 
+  for (float i = -60; i < 60; i+=0.3) { 
+        for (float  j = -60; j < 60; j+=0.3) { 
             Vector point  = new Vector(i,j);
             float w0 = edgeFunction(v2, v3, point); 
             float w1 = edgeFunction(v3, v1, point); 
             float w2 = edgeFunction(v1, v2, point); 
-            if (w0 >= 0 && w1 >= 0 && w2 >= 0) { 
+           
                 w0 /= area; 
                 w1 /= area; 
                 w2 /= area; 
                 float r = w0 * red[0] + w1 * green[0] + w2 * blue[0]; 
                 float g = w0 * red[1] + w1 * green[1] + w2 * blue[1]; 
-                float b = w0 * red[2] + w1 * green[2] + w2 * blue[2]; 
-                stroke(r,g,b);
-                rect(i,j,1,1);
-            } 
+                float b = w0 * red[2] + w1 * green[2] + w2 * blue[2];
+                float[] colors = determineColor(point);
+                stroke(colors[0],colors[1],colors[2]);
+                
+                rect(i,j,0.3,0.3);
+            
+            
         } 
     } 
     pop();
 }
 
 void randomizeTriangle() {
-  int low = -60;
-  int high = 60;
+  int low = -20;
+  int high = 20;
   v1 = new Vector(random(low, high), random(low, high));
   v2 = new Vector(random(low, high), random(low, high));
   v3 = new Vector(random(low, high), random(low, high));
+}
+
+float[] determineColor(Vector point){
+  Vector[][]points = new Vector[DIVISIONS][DIVISIONS];
+  float area = edgeFunction(v1, v2, v3); 
+  float delta = 0.06;
+  int total_pixels = DIVISIONS^2;
+  float initial_x = point.x()+0.06;
+  float initial_y = point.y()+0.06;
+  print("DELTa:",delta);
+  for(int i=0;i<points.length;i++){
+    for(int j=0;j<points.length;j++){
+      points[j][i]= new Vector(initial_x,initial_y+delta*j);
+    }
+    initial_x=initial_x+delta;
+  }
+  
+  print("\n");
+  for(int i=0;i<points.length;i++){
+    for(int j=0;j<points.length;j++){
+      print(points[i][j]);
+    }
+    print("\n");
+  }
+  print("\n");
+  float total_r=0;
+  float total_g=0;
+  float total_b=0;
+  boolean isInside = true;
+  for(int i=0;i<points.length;i++){
+    for(int j=0;j<points.length;j++){
+      float w0 = edgeFunction(v2, v3, points[i][j]); 
+      float w1 = edgeFunction(v3, v1, points[i][j]); 
+      float w2 = edgeFunction(v1, v2, points[i][j]); 
+      if (w0 >= 0 && w1 >= 0 && w2 >= 0) { 
+      w0 /= area; 
+      w1 /= area; 
+      w2 /= area; 
+      float r = w0 * red[0] + w1 * green[0] + w2 * blue[0]; 
+      float g = w0 * red[1] + w1 * green[1] + w2 * blue[1]; 
+      float b = w0 * red[2] + w1 * green[2] + w2 * blue[2]; 
+      total_r+=r;
+      total_g+=g;
+      total_b+=b;
+      }else{
+      isInside= false;
+      total_r+=0;
+      total_g+=0;
+      total_b+=0;
+      }
+      
+    }
+  }
+  if(!isInside){
+    float[]final_colors ={total_r/25,total_g/25,total_b/25};
+    return final_colors;  
+  }else{
+    float[]inside_colors = {0,0,0};
+    return  inside_colors;
+  }
 }
 
 void drawTriangleHint() {
