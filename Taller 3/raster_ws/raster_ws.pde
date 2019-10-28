@@ -6,11 +6,17 @@ import nub.processing.*;
 Scene scene;
 Node node;
 Vector v1, v2, v3;
+
 // timing
 TimingTask spinningTask;
 boolean yDirection;
 // scaling is a power of 2
 int n = 4;
+
+int[]red = {255,0,0};
+int[]green = {0,255,0};
+int[]blue = {0,0,255};
+
 
 // 2. Hints
 boolean triangleHint = true;
@@ -66,8 +72,6 @@ void draw() {
   stroke(0, 255, 0);
   if (gridHint)
     scene.drawGrid(scene.radius(), (int)pow(2, n));
-  if (triangleHint)
-    drawTriangleHint();
   push();
   scene.applyTransformation(node);
   triangleRaster();
@@ -79,13 +83,27 @@ void draw() {
 void triangleRaster() {
   // node.location converts points from world to node
   // here we convert v1 to illustrate the idea
-  if (debug) {
-    push();
-    noStroke();
-    fill(255, 0, 0, 125);
-    square(round(node.location(v1).x()), round(node.location(v1).y()), 1);
+  push();
+  float area = edgeFunction(v1, v2, v3); 
+  for (int i = 0; i < height; i++) { 
+        for (int  j = 0; j < width; j++) { 
+            Vector point  = new Vector(i,j);
+            float w0 = edgeFunction(v2, v3, point); 
+            float w1 = edgeFunction(v3, v1, point); 
+            float w2 = edgeFunction(v1, v2, point); 
+            if (w0 >= 0 && w1 >= 0 && w2 >= 0) { 
+                w0 /= area; 
+                w1 /= area; 
+                w2 /= area; 
+                float r = w0 * red[0] + w1 * green[0] + w2 * blue[0]; 
+                float g = w0 * red[1] + w1 * green[1] + w2 * blue[1]; 
+                float b = w0 * red[2] + w1 * green[2] + w2 * blue[2]; 
+                fill(r,g,b);
+                rect(i,j,1,1);
+            } 
+        } 
+    } 
     pop();
-  }
 }
 
 void randomizeTriangle() {
@@ -105,34 +123,12 @@ void drawTriangleHint() {
     strokeWeight(2);
     noFill();
   }
-  beginShape(TRIANGLES);
-  if(shadeHint)
-    fill(255, 0, 0);
-  else
-    stroke(255, 0, 0);
-  vertex(v1.x(), v1.y());
-  if(shadeHint)
-    fill(0, 255, 0);
-  else
-    stroke(0, 255, 0);
-  vertex(v2.x(), v2.y());
-  if(shadeHint)
-    fill(0, 0, 255);
-  else
-    stroke(0, 0, 255);
-  vertex(v3.x(), v3.y());
-  endShape();
-
-  strokeWeight(5);
-  stroke(255, 0, 0);
-  point(v1.x(), v1.y());
-  stroke(0, 255, 0);
-  point(v2.x(), v2.y());
-  stroke(0, 0, 255);
-  point(v3.x(), v3.y());
-
   pop();
 }
+
+float edgeFunction(Vector v1, Vector v2, Vector v3){ 
+  return (v3.x() - v1.x()) * (v2.y() - v1.y()) - (v3.y() - v1.y()) * (v2.x() - v1.x()); 
+} 
 
 void keyPressed() {
   if (key == 'g')
