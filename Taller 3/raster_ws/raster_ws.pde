@@ -85,8 +85,8 @@ void triangleRaster() {
   // here we convert v1 to illustrate the idea
   push();
   float area = edgeFunction(v1, v2, v3); 
-  for (int i = 0; i < height; i++) { 
-        for (int  j = 0; j < width; j++) { 
+  for (int i = -60; i < 60; i++) { 
+        for (int  j = -60; j < 60; j++) { 
             Vector point  = new Vector(i,j);
             float w0 = edgeFunction(v2, v3, point); 
             float w1 = edgeFunction(v3, v1, point); 
@@ -98,7 +98,7 @@ void triangleRaster() {
                 float r = w0 * red[0] + w1 * green[0] + w2 * blue[0]; 
                 float g = w0 * red[1] + w1 * green[1] + w2 * blue[1]; 
                 float b = w0 * red[2] + w1 * green[2] + w2 * blue[2]; 
-                fill(r,g,b);
+                stroke(r,g,b);
                 rect(i,j,1,1);
             } 
         } 
@@ -107,8 +107,8 @@ void triangleRaster() {
 }
 
 void randomizeTriangle() {
-  int low = -width/2;
-  int high = width/2;
+  int low = -60;
+  int high = 60;
   v1 = new Vector(random(low, high), random(low, high));
   v2 = new Vector(random(low, high), random(low, high));
   v3 = new Vector(random(low, high), random(low, high));
