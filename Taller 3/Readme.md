@@ -26,4 +26,5 @@ Referencias:
 
 ## Discusión
 
-Describa los resultados obtenidos. En el caso de anti-aliasing describir las técnicas exploradas, citando las referencias.
+* Se emplearon las coordenadas baricéntricas y una edge function a partir de las referencias encontradas [aquí](https://www.scratchapixel.com/lessons/3d-basic-rendering/rasterization-practical-implementation/rasterization-stage) para rasterizar el triángulo y sombrear su superficie según los colores de sus vértices.
+* Para la implementación del anti-aliasing se empleó la estrategia de división de los pixeles en subpixeles a partir del método descrito [aquí](https://www.scratchapixel.com/lessons/3d-basic-rendering/rasterization-practical-implementation/rasterization-practical-implementation).
